@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Leaflet</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+</head>
+
+<body>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+    integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+    crossorigin="" />
+  <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+    integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+    crossorigin=""></script>
+    <script src="line.js"></script>
+  <div id="blur">
+    <header>
+      <div class="navbar">
+        <a href="#"><img src="iconGfin.png" style="width: 70px;" alt=""></a>
+        <div style="flex-basis:100%"></div>
+        <a href="#">Home</a>
+        <a href="https://gfinthailand.com/" target="_blank">About</a>
+      </div>
+    </header>
+  
+  
+    <div class="row">
+      <div class="page-left">
+        <div class="fakeimg" style="height:800px;">
+          <img src="iconGfin.png" style="width: 100px; padding-left: 20px;" alt="">
+          <h3 id="text_level">ระดับน้ำ</h3>
+          <p id="show_text">โชว์ระดับน้ำต่างๆ ในการแสดงผลของแต่ละคลองที่สนใจ</p>
+          <div class="container">
+            <a href="#"  onclick="toggle()" class="read" style="display: none;" id="readd">Read More</a>
+        </div>
+        </div><br>
+        <!-- <div class="fakeimg" style="height:250px;">Image</div><br>
+        <div class="fakeimg" style="height:175px;">Image</div> -->
+        
+      </div>
+  
+  
+      <div class="page-right">
+        <div class="wrapper">
+          <div class="search-input">
+            <a href="" target="_blank" hidden></a>
+            <input type="text" placeholder="Search..">
+            <div class="autocom-box">
+              <!-- here list are inserted from javascript -->
+            </div>
+            <div class="icon"><i class="fas fa-search"></i></div>
+          </div>
+        </div>
+        <!-- <h1>lorem-right</h1> -->
+        <div class="mapid" id="mapid"></div>
+      </div>
+    </div>
+  
+    <footer class="footer">
+      <h2>Footer</h2>
+    </footer>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <div id="popup">
+    <iframe src="index3.html" frameborder="0" style="height:90%;width: 100%">
+      <!DOCTYPE html>
+      <html lang="en">
+      
+      <head>
+          <meta charset="UTF-8">
+          <meta http-equiv="X-UA-Compatible" content="IE=edge">
+          <meta name="viewport" content="width=device-width, initial-scale=1.0">
+          <title>Document</title>
+      </head>
+      
+      <body>
+          <!-- <script type="text/javascript"></script> -->
+          <canvas id="content"></canvas>
+          <img src="scale.jpg" alt="" id="image" style="display: none;">
+          <!-- <script src="index.js"></script>) -->
+          <p>
+          <h4 style="color: aquamarine;">Input number</h4><input id="Number" type="number">
+          </p>
+          <p>
+              <button id="run" onclick="level_water()">Enter</button>
+              <button id="run2" onclick="clear_function()">Clears</button>
+          </p>
+          <p>
+              <input type="checkbox" name="chk1" value="1" onclick="javascript:func_chk();" id="chk1"><label for="chk1">
+                  innerLine &nbsp;
+              </label>
+              <input type="checkbox" name="chk2" value="1" onclick="javascript:func_chk();" id="chk2"><label for="chk2">
+                  outLine &nbsp;
+              </label>
+              <input type="checkbox" name="chk3" value="1" onclick="javascript:func_chk();" id="chk3"><label for="chk3">
+                  colorGradient &nbsp;
+              </label>
+              <input type="checkbox" name="chk4" value="1" onclick="javascript:func_chk();" id="chk4"><label for="chk4">
+                  scaleLine &nbsp;
+              </label>
+          </p>
+          <script src="index3.js"></script>
+          <script type="text/javascript">
+              //เรียกใช้ งาน class ,id ,div จากhtml และทำการสร้างแผ่นกระดาษ getContext('2d')เป็นรูปแบบการใช้งานแบบmethod
+              var context = document.querySelector('canvas').getContext('2d');
+              var first = document.getElementById("Number");
+              var run = document.getElementById("run");
+              var run2 = document.getElementById("run2").value=' ';
+              var imgObject = new Image();
+      
+              var clear_function =  function(){
+                  first.value='';
+                  func_chk();
+              }
+              //ฟังก์ชันเส้นกรอบด้านใน
+              var innerLine = function () {
+      
+                  if (document.all.chk1.checked == true) {
+                      //วาดเส้นด้านบน
+                      context.canvas.width2 = document.documentElement.clientWidth * 0.279;
+                      context.canvas.width3 = document.documentElement.clientWidth * 0.2905;
+                      context.canvas.height2 = document.documentElement.clientHeight * 0.152;
+                      context.canvas.height3 = document.documentElement.clientHeight * 0.152;
+                      context.beginPath();
+                      context.strokeStyle = 'black'
+                      context.moveTo(context.canvas.width2, context.canvas.height2);
+                      context.lineTo(context.canvas.width3, context.canvas.height3);
+                      context.stroke();
+                      context.closePath();
+                      //วาดเส้นด้านขวา
+                      context.canvas.width2 = document.documentElement.clientWidth * 0.2830;
+                      context.canvas.height2 = document.documentElement.clientHeight * 0.452;
+                      context.canvas.width3 = document.documentElement.clientWidth * 0.2905;
+                      context.canvas.height3 = document.documentElement.clientHeight * 0.152;
+                      context.beginPath();
+                      context.strokeStyle = 'black'
+                      context.moveTo(context.canvas.width2, context.canvas.height2);
+                      context.lineTo(context.canvas.width3, context.canvas.height3);
+                      context.stroke();
+                      context.closePath();
+                      //วาดเส้นด้านล่าง
+                      context.canvas.width2 = document.documentElement.clientWidth * 0.272;
+                      context.canvas.height2 = document.documentElement.clientHeight * 0.452;
+                      context.canvas.width3 = document.documentElement.clientWidth * 0.2830;
+                      context.canvas.height3 = document.documentElement.clientHeight * 0.452;
+                      context.beginPath();
+                      context.strokeStyle = 'black'
+                      context.moveTo(context.canvas.width2, context.canvas.height2);
+                      context.lineTo(context.canvas.width3, context.canvas.height3);
+                      context.stroke();
+                      context.closePath();
+                      //วาดเส้นด้านซ้าย
+                      context.canvas.width2 = document.documentElement.clientWidth * 0.272;
+                      context.canvas.height2 = document.documentElement.clientHeight * 0.452;
+                      context.canvas.width3 = document.documentElement.clientWidth * 0.279;
+                      context.canvas.height3 = document.documentElement.clientHeight * 0.152;
+                      context.beginPath();
+                      context.strokeStyle = 'black'
+                      context.moveTo(context.canvas.width2, context.canvas.height2);
+                      context.lineTo(context.canvas.width3, context.canvas.height3);
+                      context.stroke();
+                      context.closePath();
+                  }
+                  else if (document.all.chk1.checked == false) {
+                      var r = (color >> 16) & 255;
+                      var g = (color >> 8) & 255;
+                      var b = color & 255;
+                      var alpha = 0.5;
+                      context.canvas.strokeStyle = "rgba(" + r + "," + g + "," + b + "," + alpha + ")";
+                  }
+              }
+      
+              //ฟังก์ชันระดับน้ำ
+              var level_water = function () {
+                  var num = Number(first.value);
+                  // if (document.all.run2.checked == true) {
+                  //     func_chk();
+                  //     // context.clearRect(0, 0, document.documentElement.clientWidth * 0.315, document.documentElement.clientHeight * 0.299);
+                  //     // lok_num = 1;
+                  // }
+                  // เงื่อนไข้ในการเช็คค่า Input ที่รับมา
+                  if (num >= 0 && num <= 100) {
+                      var num2 = 0.3;
+                      var num3 = 0.452;
+                      var num4 = num3 - num2;
+                      var sum = (0.3 * num) / 100;
+                      var sum2 = num3 - sum;
+                      y5 = document.documentElement.clientHeight * sum2;
+                      func_chk();
+      
+                      //                             เส้นระดับน้ำ
+                      context.canvas.width2 = document.documentElement.clientWidth * 0.315;
+                      context.canvas.height2 = document.documentElement.clientHeight * 0.299;
+                      context.canvas.width3 = document.documentElement.clientWidth * 0.25;
+                      context.canvas.height3 = document.documentElement.clientHeight * 0.307;
+      
+                      context.restore();
+                      context.beginPath();
+                      context.strokeStyle = 'blue'
+                      context.moveTo(context.canvas.width2, y5);
+                      context.lineTo(context.canvas.width3, y5);
+                      context.stroke();
+                      context.closePath();
+                      lok_num = 0;
+                  }
+                  else {
+                      alert("Please enter number 0-100% ");
+                  }
+              }
+      
+              //ฟัวก์ชันเส้นกรอบด้านนอก
+              var outLine = function () {
+                  //                          เส้นกรอบนอก
+                  //กรอบนอกด้านบน
+                  context.canvas.width2 = document.documentElement.clientWidth * 0.25;
+                  context.canvas.height2 = document.documentElement.clientHeight * 0.12;
+                  context.canvas.width3 = document.documentElement.clientWidth * 0.315;
+                  context.canvas.height3 = document.documentElement.clientHeight * 0.12;
+                  context.beginPath();
+                  context.strokeStyle = 'red'
+                  context.moveTo(context.canvas.width2, context.canvas.height2);
+                  context.lineTo(context.canvas.width3, context.canvas.height3);
+                  context.stroke();
+                  context.closePath();
+                  //กรอบนอกด้านซ้าย
+                  context.canvas.width2 = document.documentElement.clientWidth * 0.315;
+                  context.canvas.height2 = document.documentElement.clientHeight * 0.12;
+                  context.canvas.width3 = document.documentElement.clientWidth * 0.315;
+                  context.canvas.height3 = document.documentElement.clientHeight * 0.48;
+                  context.beginPath();
+                  context.strokeStyle = 'red'
+                  context.moveTo(context.canvas.width2, context.canvas.height2);
+                  context.lineTo(context.canvas.width3, context.canvas.height3);
+                  context.stroke();
+                  context.closePath();
+                  console.log("height 1: " + document.documentElement.clientHeight * 0.152);
+                  console.log("height 2: " + document.documentElement.clientHeight * 0.452);
+                  console.log("height 3: " + document.documentElement.clientHeight);
+                  console.log("height 4: " + document.documentElement.clientHeight);
+                  //กรอบนอกด้านล่าง
+                  context.canvas.width2 = document.documentElement.clientWidth * 0.25;
+                  context.canvas.height2 = document.documentElement.clientHeight * 0.48;
+                  context.canvas.width3 = document.documentElement.clientWidth * 0.315;
+                  context.canvas.height3 = document.documentElement.clientHeight * 0.48;
+                  context.beginPath();
+                  context.strokeStyle = 'red'
+                  context.moveTo(context.canvas.width2, context.canvas.height2);
+                  context.lineTo(context.canvas.width3, context.canvas.height3);
+                  context.stroke();
+                  context.closePath();
+                  //กรอบนอกด้านขวา
+                  context.canvas.width2 = document.documentElement.clientWidth * 0.25;
+                  context.canvas.height2 = document.documentElement.clientHeight * 0.48;
+                  context.canvas.width3 = document.documentElement.clientWidth * 0.25;
+                  context.canvas.height3 = document.documentElement.clientHeight * 0.12;
+                  context.beginPath();
+                  context.strokeStyle = 'red'
+                  context.moveTo(context.canvas.width2, context.canvas.height2);
+                  context.lineTo(context.canvas.width3, context.canvas.height3);
+                  context.stroke();
+                  context.closePath();
+              }
+      
+              //ฟังก์ชั่นแถบสี
+              var colorGradient = function () {
+                  //                             แถบสี
+                  var my_gradient = context.createLinearGradient(0, 0, 0, 650);
+                  my_gradient.addColorStop(0, "green");
+                  my_gradient.addColorStop(0.25, "lime");
+                  my_gradient.addColorStop(0.5, "orange");
+                  my_gradient.addColorStop(0.75, "red");
+                  my_gradient.addColorStop(1, "black");
+                  context.fillStyle = my_gradient;
+                  context.fillRect(document.documentElement.clientWidth * 0.315, document.documentElement.clientHeight * 0.152, document.documentElement.clientWidth * 0.015, document.documentElement.clientHeight * 0.3);
+              }
+      
+              // ฟังก์ชันสแกลระดับน้ำ
+              var scaleLine = function () {
+                  //ตัวแปรไว้ใช้ในการกำหนดขอบเขตตำแหน่ง
+                  context.canvas.widthScale = document.documentElement.clientWidth * 0.255;
+                  context.canvas.height2 = document.documentElement.clientHeight * 0.152;
+                  context.canvas.heightScale3 = document.documentElement.clientHeight * 0.452;
+                  var dele = 0;
+                  //for-loop ในการขีดเส้น ทุกๆ 1mm = 3.8px ประมาณ4px และ เท่ากับ 0.004%ของน่าจอ 
+                  for (let i = 0; i < 76; i++) {
+                      context.canvas.heightScale3 = document.documentElement.clientHeight * (0.452 - dele);
+                      context.beginPath();
+                      context.strokeStyle = 'red'
+                      context.moveTo(context.canvas.widthScale, context.canvas.heightScale3);
+                      context.lineTo(document.documentElement.clientWidth * 0.268, context.canvas.heightScale3);
+                      context.stroke();
+                      context.closePath();
+                      dele = dele + 0.00396;
+                      //เงื่อนไขcheck ให้ตรงกับเส้นทุกๆ1cm
+                      if (i % 10 == 0) {
+                          context.canvas.widthScale2 = document.documentElement.clientWidth * 0.250;
+                          context.beginPath();
+                          context.strokeStyle = 'white'
+                          context.moveTo(context.canvas.widthScale2, context.canvas.heightScale3);
+                          context.lineTo(document.documentElement.clientWidth * 0.268, context.canvas.heightScale3);
+                          context.stroke();
+                          context.closePath();
+                          context.canvas.heightScale4 = document.documentElement.clientHeight * (0.458 - dele);
+                          context.beginPath()
+                          context.font = '10px Open Sans sans-serif'
+                          context.fillStyle = '#f66'
+                          context.fillText(i/10,document.documentElement.clientWidth * 0.243, context.canvas.heightScale4)
+                      }
+                  }
+      
+                  //Test และการคำนวณระยะห่าง 
+                  // context.canvas.heightScale2 = document.documentElement.clientHeight * 0.448;
+                  // context.beginPath();
+                  // context.strokeStyle = 'blue'
+                  // context.moveTo(context.canvas.widthScale, context.canvas.heightScale2);
+                  // context.lineTo(document.documentElement.clientWidth * 0.268, context.canvas.heightScale2);
+                  // context.stroke();
+                  // context.closePath();
+      
+                  // context.canvas.heightScale2 = document.documentElement.clientHeight * 0.444;
+                  // context.beginPath();
+                  // context.strokeStyle = 'blue'
+                  // context.moveTo(context.canvas.widthScale, context.canvas.heightScale2);
+                  // context.lineTo(document.documentElement.clientWidth * 0.268, context.canvas.heightScale2);
+                  // context.stroke();
+                  // context.closePath();
+      
+                  // context.beginPath();
+                  // context.strokeStyle = 'black'
+                  // context.moveTo(474, 452);
+                  // context.lineTo(document.documentElement.clientWidth * 0.268, 452);
+                  // context.stroke();
+                  // context.closePath();
+      
+                  // context.beginPath();
+                  // context.strokeStyle = 'black'
+                  // context.moveTo(474, 448);
+                  // context.lineTo(document.documentElement.clientWidth * 0.268, 448);
+                  // context.stroke();
+                  // context.closePath();
+              }
+      
+              //                        function resize image 
+              var render = function () {
+                  context.canvas.width = document.documentElement.clientWidth * 0.5;
+                  context.canvas.height = document.documentElement.clientHeight * 0.5;
+                  context.drawImage(imgObject, 0, 0, context.canvas.width, context.canvas.height)
+              }
+              imgObject.src = "scale.jpg";
+              render();
+      
+              //function checkค่า checkBox และเอาไว้ใช้ในการrenderทับไปเนื่องจากหาfunctionหรือการลบตัวเส้นไม่ได้
+              function func_chk() {
+                  var test1 = true;
+                  var test2 = false;
+                  if ((document.all.chk1.checked == true) && (document.all.chk2.checked == true) && (document.all.chk3.checked == true) && (document.all.chk4.checked == true)) {
+                      render();
+                      innerLine(test1);
+                      outLine();
+                      colorGradient();
+                      scaleLine();
+                      window.addEventListener("resize", render);
+                      window.addEventListener("resize", scaleLine);
+                      window.addEventListener("resize", innerLine);
+                      window.addEventListener("resize", outLine);
+                      window.addEventListener("resize", level_water);
+                  }
+                  else if ((document.all.chk1.checked == true) && (document.all.chk2.checked == true) && (document.all.chk3.checked == true) && (document.all.chk4.checked == false)) {
+                      render();
+                      innerLine(test1);
+                      outLine();
+                      colorGradient();
+                      window.addEventListener("resize", render);
+                      window.addEventListener("resize", innerLine);
+                      window.addEventListener("resize", outLine);
+                      window.addEventListener("resize", level_water);
+                  }
+                  else if ((document.all.chk1.checked == true) && (document.all.chk2.checked == true) && (document.all.chk3.checked == false) && (document.all.chk4.checked == true)) {
+                      render();
+                      innerLine(test1);
+                      outLine();
+                      scaleLine();
+                      window.addEventListener("resize", render);
+                      window.addEventListener("resize", innerLine);
+                      window.addEventListener("resize", outLine);
+                      window.addEventListener("resize", scaleLine);
+                  }
+                  else if ((document.all.chk1.checked == true) && (document.all.chk2.checked == true) && (document.all.chk3.checked == false) && (document.all.chk4.checked == false)) {
+                      render();
+                      innerLine(test1);
+                      outLine();
+                      window.addEventListener("resize", render);
+                      window.addEventListener("resize", innerLine);
+                      window.addEventListener("resize", outLine);
+                  }
+                  else if ((document.all.chk1.checked == true) && (document.all.chk2.checked == false) && (document.all.chk3.checked == true) && (document.all.chk4.checked == true)) {
+                      render();
+                      innerLine(test1);
+                      colorGradient();
+                      scaleLine();
+                      window.addEventListener("resize", render);
+                      window.addEventListener("resize", innerLine);
+                      window.addEventListener("resize", colorGradient);
+                      window.addEventListener("resize", scaleLine);
+                  }
+                  else if ((document.all.chk1.checked == true) && (document.all.chk2.checked == false) && (document.all.chk3.checked == true) && (document.all.chk4.checked == false)) {
+                      render();
+                      innerLine(test1);
+                      colorGradient();
+                      window.addEventListener("resize", render);
+                      window.addEventListener("resize", innerLine);
+                      window.addEventListener("resize", colorGradient);
+                  }
+                  else if ((document.all.chk1.checked == true) && (document.all.chk2.checked == false) && (document.all.chk3.checked == false) && (document.all.chk4.checked == true)) {
+                      render();
+                      innerLine(test1);
+                      scaleLine();
+                      window.addEventListener("resize", render);
+                      window.addEventListener("resize", innerLine);
+                      window.addEventListener("resize", scaleLine);
+                  }
+                  else if ((document.all.chk1.checked == true) && (document.all.chk2.checked == false) && (document.all.chk3.checked == false) && (document.all.chk4.checked == false)) {
+                      render();
+                      innerLine(test1);
+                      window.addEventListener("resize", render);
+                      window.addEventListener("resize", innerLine);
+                  }
+                  else if ((document.all.chk1.checked == false) && (document.all.chk2.checked == true) && (document.all.chk3.checked == true) && (document.all.chk4.checked == true)) {
+                      render();
+                      outLine();
+                      colorGradient();
+                      scaleLine();
+                      window.addEventListener("resize", render);
+                      window.addEventListener("resize", outLine);
+                      window.addEventListener("resize", colorGradient);
+                      window.addEventListener("resize", scaleLine);
+                  }
+                  else if ((document.all.chk1.checked == false) && (document.all.chk2.checked == true) && (document.all.chk3.checked == true) && (document.all.chk4.checked == false)) {
+                      render();
+                      outLine();
+                      colorGradient();
+                      window.addEventListener("resize", render);
+                      window.addEventListener("resize", outLine);
+                      window.addEventListener("resize", colorGradient);
+                  }
+                  else if ((document.all.chk1.checked == false) && (document.all.chk2.checked == true) && (document.all.chk3.checked == false) && (document.all.chk4.checked == true)) {
+                      render();
+                      outLine();
+                      scaleLine();
+                      window.addEventListener("resize", render);
+                      window.addEventListener("resize", outLine);
+                      window.addEventListener("resize", scaleLine);
+                  }
+                  else if ((document.all.chk1.checked == false) && (document.all.chk2.checked == true) && (document.all.chk3.checked == false) && (document.all.chk4.checked == false)) {
+                      render();
+                      outLine();
+                      window.addEventListener("resize", render);
+                      window.addEventListener("resize", outLine);
+                  }
+                  else if ((document.all.chk1.checked == false) && (document.all.chk2.checked == false) && (document.all.chk3.checked == true) && (document.all.chk4.checked == true)) {
+                      render();
+                      colorGradient();
+                      scaleLine();
+                      window.addEventListener("resize", render);
+                      window.addEventListener("resize", colorGradient);
+                      window.addEventListener("resize", scaleLine);
+                  }
+                  else if ((document.all.chk1.checked == false) && (document.all.chk2.checked == false) && (document.all.chk3.checked == true) && (document.all.chk4.checked == false)) {
+                      render();
+                      colorGradient();
+                      window.addEventListener("resize", render);
+                      window.addEventListener("resize", colorGradient);
+                  }
+                  else if ((document.all.chk1.checked == false) && (document.all.chk2.checked == false) && (document.all.chk3.checked == false) && (document.all.chk4.checked == true)) {
+                      render();
+                      scaleLine();
+                      window.addEventListener("resize", render);
+                      window.addEventListener("resize", scaleLine);
+                  }
+                  else if ((document.all.chk1.checked == false) && (document.all.chk2.checked == false) && (document.all.chk3.checked == false) && (document.all.chk4.checked == false)) {
+                      render();
+                      window.addEventListener("resize", render);
+                  }
+              }
+              func_chk();
+      
+          </script>
+      
+      </body>
+      
+      <style>
+          p {
+              align-items: center;
+          }
+      
+          html {
+              height: 100%;
+              width: 100%;
+          }
+      
+          * {
+              box-sizing: border-box;
+              margin: 0;
+              padding: 0;
+          }
+      
+          body {
+              background-color: #202830;
+              color: #ffffff;
+              display: grid;
+              justify-items: center;
+              align-content: space-around;
+              height: 100%;
+          }
+      
+          canvas {
+              justify-items: center;
+              align-items: center;
+          }
+      </style>
+      
+      </html>
+    </iframe><br>
+    <!-- <h2>Lorem ipsum dolor sit amet consectetur adipisicing elit.</h2>
+    <p>sed do eiusmod</p> -->
+    <h3 id="text"></h3>
+    <a href="#" onclick="toggle()">Close</a>
+</div>
+
+
+
+
+
+
+  <script type="text/javascript">
+    function toggle()
+    {
+        var blur = document.getElementById('blur');
+        blur.classList.toggle('active')
+        var popup = document.getElementById('popup');
+        popup.classList.toggle('active')
+    }
+</script>
+
+
+
+
+  <script src="suggestions.js"></script>
+  <script src="autosearch.js"></script>
+  <script src="line.js"></script>
+  <script src="index.js"></script>
+</body>
+
+</html>

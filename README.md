@@ -3,15 +3,11 @@
 This project is a leaflet-canvas about canal line map in bangkok 💙💙💙
 <dl>
   <dt>Function</dt>
-  <dd>You can search canal in box search or ues mouse  click line on map</dd>
-  <dd>Also you can see the canal pictures that you interested and see the canal’s water level</dd>
+ > <dd>You can search canal in box search or ues mouse  click line on map</dd>
+ > <dd>Also you can see the canal pictures that you interested and see the canal’s water level</dd>
 </dl>
 
-Inline-style: 
-![alt text](https://sv1.picz.in.th/images/2021/07/04/snOOLQ.th.png "Picture website")
 
-Inline-style: 
-![alt text](https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "Logo Title Text 1")
 
 
 ## Leaflet

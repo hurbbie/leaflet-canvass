@@ -72,3 +72,20 @@ function getColor(d) {
                                 '#FFEDA0';
 }
 ```
+
+## Canvas
+Initially creating an HTML file, I named it index.html and had element <canvas> as an example.
+
+```HTML 
+  <!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>HTML5 Canvas Tutorials</title>
+  </head>
+  <body>
+    <canvas id="canvas" width="500" height="500"></canvas>
+    <script src="main.js"></script>
+  </body>
+</html>
+```

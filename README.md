@@ -171,8 +171,12 @@ context.font = '50px Open Sans sans-serif'
 context.fillStyle = '#f36'
 context.fillText('Hello HTML5 Canvas', 50, 50)
   ```
+  <img src="https://i.stack.imgur.com/5AAyW.png"/>
+  
 #### For the length and width had set.
 Refer to this [link](https://stackoverflow.com/questions/21064101/understanding-offsetwidth-clientwidth-scrollwidth-and-height-respectively)
+  
+  
   
 - This define an EventListener. When changing the window size it will Resize and use the function Render
   

@@ -92,26 +92,27 @@ Initially creating an HTML file, I named it index.html and had element <canvas> 
   
 Create file js or write a script in HTML 
   
-```HTML 
+```javascript
 var canvas = document.getElementById('canvas')
 var context = canvas.getContext('2d')
 ```
 - From the code above we select an element with ID name canvas. That is <canvas> the getContext('2d') to use 2d canvas context (an object to draw and create graphics)
 Or you can write it like this
   
-  ```HTML 
+```javascript
 var canvas = document.getElementById('canvas').getContext('2d')
-  ```
+```
   
 #### Draw the square 
 Square drawing, the function fillRect(x, y, width, height) can be use where x is the  x-axis ,y is the y-axis, and width, height is the width and height,respectively When we select Element canvas and had done getContext() we can draw a simple square with this code.
-  ```HTML
+  
+```javascript
   // set the color
 context.fillStyle = 'green'
 // drawing a square Rectangle (x, y, width, height)
 // the  x,y-axis is counted from the top of the point 0, 0
 context.fillRect(10, 10, 100, 100)
-  ```
+```
   #### Draw the line
 To draw a line on the Canvas we will use it in conjunction with the Path with following important function.
   <dl>
@@ -125,7 +126,7 @@ To draw a line on the Canvas we will use it in conjunction with the Path with fo
 </dl>
 
  #### For example
-```HTML
+```javascript
 var canvas = document.getElementById('canvas')
 var context = canvas.getContext('2d')
 context.beginPath()

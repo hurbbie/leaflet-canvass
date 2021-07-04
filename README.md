@@ -10,7 +10,7 @@ This project is a leaflet-canvas about canal line map in bangkok 💙💙💙
 
 
 
-## Leaflet
+## Leaflet 💗💗💗
 
 Leaflet usage
 create div. use the ID that you can know it when you use as map.
@@ -73,7 +73,7 @@ function getColor(d) {
 }
 ```
 
-## Canvas
+## Canvas 💗💗💗
 Initially creating an HTML file, I named it index.html and had element <canvas> as an example.
 
 ```HTML 
@@ -89,3 +89,74 @@ Initially creating an HTML file, I named it index.html and had element <canvas> 
   </body>
 </html>
 ```
+Create file js or write a script in HTML 
+  
+ ```HTML 
+  var canvas = document.getElementById('canvas')
+var context = canvas.getContext('2d')
+  ```
+- From the code above we select an element with ID name canvas. That is <canvas> the getContext('2d') to use 2d canvas context (an object to draw and create graphics)
+Or you can write it like this
+  
+  ```HTML 
+var canvas = document.getElementById('canvas').getContext('2d')
+  ```
+  
+#### Draw the square 
+Square drawing, the function fillRect(x, y, width, height) can be use where x is the  x-axis ,y is the y-axis, and width, height is the width and height,respectively When we select Element canvas and had done getContext() we can draw a simple square with this code.
+  ```HTML
+  // set the color
+context.fillStyle = 'green'
+// drawing a square Rectangle (x, y, width, height)
+// the  x,y-axis is counted from the top of the point 0, 0
+context.fillRect(10, 10, 100, 100)
+  ```
+  #### Draw the line
+To draw a line on the Canvas we will use it in conjunction with the Path with following important function.
+  <dl>
+  <dt>Function</dt>
+  <dd>context.beginPath() : to set the path</dd>
+  <dd>context.moveTo(x, y) : starting position to draw</dd>
+  <dd>context.lineTo(x, y) : end of drawing</dd>
+  <dd>context.lineWidth : this defines the size of the line</dd>
+  <dd>context.strokeStyle : defines the color of the line</dd>
+  <dd>context.lineCap : defined the line style, such as  round, square or butt</dd>
+</dl>
+
+ #### For example
+```HTML
+var canvas = document.getElementById('canvas')
+var context = canvas.getContext('2d')
+context.beginPath()
+context.strokeStyle = '#3984dd'
+context.lineWidth = 10
+context.moveTo(50, 50)
+context.lineTo(50, 200)
+context.stroke()
+context.beginPath()
+context.strokeStyle = '#dd0343'
+context.lineWidth = 10
+context.lineCap = 'round'
+context.moveTo(100, 50)
+context.lineTo(100, 200)
+context.stroke()
+context.beginPath()
+context.strokeStyle = '#06f3d2'
+context.lineWidth = 10
+context.lineCap = 'butt'
+context.moveTo(150, 50)
+context.lineTo(150, 200)
+context.stroke()
+```
+#### Draw the Text
+There are two methods of drawing Text.
+
+<dl>
+  <dd>fillText(text, x, y) : show the  Text as normally 
+strokeText(text, x, y) : draws only the border Text and the other important methods as well
+font : set the size and the font that you want to use
+fillStyle : set the color of the Text in the same way as drawing square, circle, lines
+textAlign : you can define text-align</dd>
+  </dl>
+
+  

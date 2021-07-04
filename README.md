@@ -154,11 +154,24 @@ context.stroke()
 There are two methods of drawing Text.
 
 <dl>
-  <dd>fillText(text, x, y) : show the  Text as normally 
-strokeText(text, x, y) : draws only the border Text and the other important methods as well
-font : set the size and the font that you want to use
-fillStyle : set the color of the Text in the same way as drawing square, circle, lines
-textAlign : you can define text-align</dd>
-  </dl>
+  <dd>fillText(text, x, y) : show the  Text as normally </dd>
+  <dd>strokeText(text, x, y) : draws only the border Text and the other important methods as well</dd>
+  <dd>font : set the size and the font that you want to use</dd>
+  <dd>fillStyle : set the color of the Text in the same way as drawing square, circle, lines</dd>
+  <dd>textAlign : you can define text-align</dd>
+</dl>
 
+ #### As an example
+  
+```javascript
+var canvas = document.getElementById('canvas')
+var context = canvas.getContext('2d')
+context.beginPath()
+context.font = '50px Open Sans sans-serif'
+context.fillStyle = '#f36'
+context.fillText('Hello HTML5 Canvas', 50, 50)
+  ```
+####For the length and width had set.
+Refer to this [link](https://stackoverflow.com/questions/21064101/understanding-offsetwidth-clientwidth-scrollwidth-and-height-respectively)
+  
   

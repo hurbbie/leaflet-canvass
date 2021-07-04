@@ -15,15 +15,15 @@ This project is a leaflet-canvas about canal line map in bangkok 💙💙💙
 Leaflet usage
 create div. use the ID that you can know it when you use as map.
 
-How to use leaflet in Javascript(JS)
+#### How to use leaflet in Javascript(JS)
 
-document.getElementById is how to use ID that you interested in HTML set the name is mapid as variable or anything.
+- document.getElementById is how to use ID that you interested in HTML set the name is mapid as variable or anything.
 
 ```javascript
 var mapid = document.getElementById('id');
 ```
 
-L.tileLayer is how to use Attributemap by use API at Leaflet that fill in L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
+- L.tileLayer is how to use Attributemap by use API at Leaflet that fill in L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
 Use addTo(mymap) to show all function on the map
 
 ```javascript
@@ -37,14 +37,14 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 }).addTo(mymap);
 ```
 
-To show the line on the map is use L.geojson(line) by use style from the funvtion that you has already create name is style
+- To show the line on the map is use L.geojson(line) by use style from the funvtion that you has already create name is style
 
 ```javascript
 geojson = L.geoJson(line, {
     style: style,
 }).addTo(mymap);
 ```
-Style function will return where the return value contains fillcolor which is the fill color of the data feature properties density. It takes a value from the getColor function that returns a color value weight is the color is the color weight, opacity is the transparency of the line color is the command to add the color in datasets based on the density at the file line.js by use the function return name getColor.
+- Style function will return where the return value contains fillcolor which is the fill color of the data feature properties density. It takes a value from the getColor function that returns a color value weight is the color is the color weight, opacity is the transparency of the line color is the command to add the color in datasets based on the density at the file line.js by use the function return name getColor.
 
 ```javascript
 function style(feature) {
@@ -58,4 +58,17 @@ function style(feature) {
     };
 }
 ```
+- Function getColor is the function to criteria-based color assignments
 
+```javascript
+function getColor(d) {
+    return d > 10 ? '#800026' :
+        d > 7 ? '#BD0026' :
+            d > 6 ? '#E31A1C' :
+                d > 5 ? '#FC4E2A' :
+                    d > 4 ? '#FD8D3C' :
+                        d > 3 ? '#FEB24C' :
+                            d > 2 ? '#FED976' :
+                                '#FFEDA0';
+}
+```

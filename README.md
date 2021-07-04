@@ -9,7 +9,7 @@ This project is a leaflet-canvas about canal line map in bangkok 💙💙💙
 <a href="https://filezeed.com/ib/EoSDsPW456"><img src="https://filezeed.s3.us-west-1.wasabisys.com/EoSDsPW456.PNG" alt="EoSDsPW456"/></a>
 
 <a href="https://imgflip.com/gif/5ff3ky"><img src="https://i.imgflip.com/5ff3ky.gif" title="made at imgflip.com"/></a>
-<div style="width:360px;max-width:100%;"><div style="height:0;padding-bottom:56.11%;position:relative;"><iframe width="360" height="202" style="position:absolute;top:0;left:0;width:100%;height:100%;" frameBorder="0" src="https://imgflip.com/embed/5ff3ky"></iframe></div><p><a href="https://imgflip.com/gif/5ff3ky">via Imgflip</a></p></div>
+
 ## Leaflet 💗💗💗
 
 Leaflet usage

@@ -8,8 +8,10 @@ This project is a leaflet-canvas about canal line map in bangkok 💙💙💙
 </dl>
 
 Inline-style: 
-![alt text](https://sv1.picz.in.th/images/2021/07/04/snOxRk.png "Picture website")
+![alt text](https://sv1.picz.in.th/images/2021/07/04/snOxRk.md.png "Picture website")
 
+Inline-style: 
+![alt text](https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "Logo Title Text 1")
 
 
 ## Leaflet

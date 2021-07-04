@@ -171,7 +171,21 @@ context.font = '50px Open Sans sans-serif'
 context.fillStyle = '#f36'
 context.fillText('Hello HTML5 Canvas', 50, 50)
   ```
-####For the length and width had set.
+#### For the length and width had set.
 Refer to this [link](https://stackoverflow.com/questions/21064101/understanding-offsetwidth-clientwidth-scrollwidth-and-height-respectively)
   
+- This define an EventListener. When changing the window size it will Resize and use the function Render
   
+```javascript
+ window.addEventListener("resize", render);
+```
+  
+- Function Render is the use of the picture object and drawing. Which use imgObject.src = "scale.jpg"; This is the source image file.
+  
+```javascript
+  var render = function () {
+            context.canvas.width = document.documentElement.clientWidth * 0.5;
+            context.canvas.height = document.documentElement.clientHeight * 0.5;
+            context.drawImage(imgObject, 0, 0, context.canvas.width, context.canvas.height)
+        }
+```

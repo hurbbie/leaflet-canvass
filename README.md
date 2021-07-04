@@ -89,12 +89,13 @@ Initially creating an HTML file, I named it index.html and had element <canvas> 
   </body>
 </html>
 ```
+  
 Create file js or write a script in HTML 
   
- ```HTML 
-  var canvas = document.getElementById('canvas')
+```HTML 
+var canvas = document.getElementById('canvas')
 var context = canvas.getContext('2d')
-  ```
+```
 - From the code above we select an element with ID name canvas. That is <canvas> the getContext('2d') to use 2d canvas context (an object to draw and create graphics)
 Or you can write it like this
   

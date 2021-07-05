@@ -1,4 +1,4 @@
-🌆  # leaflet-canvass 🌆
+  # leaflet-canvas 🌆
 ### Over view leaflet-canvas 
 This project is a leaflet-canvas about canal line map in bangkok 💙💙💙
 <dl>
@@ -193,3 +193,5 @@ Refer to this [link](https://stackoverflow.com/questions/21064101/understanding-
             context.drawImage(imgObject, 0, 0, context.canvas.width, context.canvas.height)
         }
 ```
+___
+  Thx For read 

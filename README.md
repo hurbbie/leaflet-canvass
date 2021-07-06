@@ -192,6 +192,8 @@ Refer to this [link](https://stackoverflow.com/questions/21064101/understanding-
             context.canvas.height = document.documentElement.clientHeight * 0.5;
             context.drawImage(imgObject, 0, 0, context.canvas.width, context.canvas.height)
         }
+   imgObject.src = "scale.jpg"; //This Address image 
+        render(); // Run function render
 ```
 ___
   Thx For read 

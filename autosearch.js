@@ -186,7 +186,10 @@ function onEachFeature(feature, layer) {
         click: click
     });
     function click() {
-
+        document.getElementById('readd').style.display='block';
+        document.getElementById('text_level').innerHTML = feature.properties.name;
+        document.getElementById('text').innerHTML = feature.properties.name;
+        document.getElementById('show_text').innerHTML = "เป็นระดับน้ำของคลอง: "+feature.properties.name+"มีระดับน้ำเท่ากับ: "+feature.properties.density+" สามารถกด Read more เพื่อดูรูปภาพระดับน้ำได้";
     };
 
 }

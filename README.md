@@ -5,8 +5,12 @@ This project is a leaflet-canvas about canal line map in bangkok 💙💙💙
   <dt>Function</dt>
   <dd>You can search canal in box search or ues mouse  click line on map</dd>
   <dd>Also you can see the canal pictures that you interested and see the canal’s water level</dd>
+  <dd>Access to data is to send a value from a click or  target from the mouse to the function that has already written It is located in the Leaflet section, To show the colored line have to access the Line.js data that has been downloaded from the Link</dd>
 </dl>
 
+   [Link canal's Js](https://data.go.th/dataset/canal "Data canal's in Bkk")
+   
+ 
 
 <a href="https://imgflip.com/gif/5ff3ky"><img src="https://i.imgflip.com/5ff3ky.gif" title="made at imgflip.com"/></a>
 
@@ -38,13 +42,15 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 ```
 
 - To show the line on the map is use L.geojson(line) by use style from the funvtion that you has already create name is style
-
+- To creating a variable as geojson = L.geoJson(line) is to call the function on the side leaflet by use geoJson(line) It retrieves information from the file line.js in which the information of line.js That is to include the values ​​of latitude, longitude, canal name, water density with style so setstyle is the line which is derived from the style function created
 ```javascript
 geojson = L.geoJson(line, {
     style: style,
 }).addTo(mymap);
 ```
 - Style function will return where the return value contains fillcolor which is the fill color of the data feature properties density. It takes a value from the getColor function that returns a color value weight is the color is the color weight, opacity is the transparency of the line color is the command to add the color in datasets based on the density at the file line.js by use the function return name getColor.
+- Style(feature) function Retrieving the line.js value that contains a sequence of feature data and return the value
+onEachFeature: onEachFeature is the function that used for Layer GeoJso [Read more](https://leafletjs.com/examples/geojson/)
 
 ```javascript
 function style(feature) {
@@ -58,6 +64,58 @@ function style(feature) {
     };
 }
 ```
+
+```javascript
+function onEachFeature(feature, layer) {
+    layer.on({
+        mouseover: highlightFeature,
+        mouseout: resetHighlight,
+        click: click
+    });
+    function click() {
+        document.getElementById('readd').style.display='block';
+        document.getElementById('text_level').innerHTML = feature.properties.name;
+        document.getElementById('text').innerHTML = feature.properties.name;
+        document.getElementById('show_text').innerHTML = "เป็นระดับน้ำของคลอง: "+feature.properties.name+"มีระดับน้ำเท่ากับ: "+feature.properties.density+" สามารถกด Read more เพื่อดูรูปภาพระดับน้ำได้";
+    };
+
+}
+
+```
+- To access the data by points or click on the Layer that you had interested from the mouse to the command mouseover: hightlightFeature It is said that if we point the mouse over it, it will run hightlightFeature 
+For hightlightFeature function is the line or Layer for setStyle
+
+```javascript
+function highlightFeature(e) {
+    var layer = e.target; // It gets the value from the mouse pointer.
+    layer.setStyle({ // is the setStyle for the line
+        weight: 5,
+        color: 'blue',
+        dashArray: '',
+        fillOpacity: 0.7
+    });
+```
+- To point the mouse out mouseout:resetHighlight It is said that if we remove the mouse from Layer or the line that we have interested will use resetHightlight 
+By resetHighlight function is resetStyle for the line or Layer
+
+```javascript
+function resetHighlight(e) {
+    geojson.resetStyle(e.target); //to reset the value of the line
+}
+```
+
+- The above will tell about moving the mouse pointer or hover, but next will be  Click, when we click, information will appear on the left, which is the function of clicking  which we will use inside as
+- So dcoument.getElementByIdis how to use Element for Id that you had already Set and do the .innerHTML is insert the data or Control the data in HTML and that followed by feature.properties.name or feature.properties.density This accesses the data of the JS file that we put variables or configurations in.
+
+```javascript
+function click() {
+        document.getElementById('readd').style.display='block';
+        document.getElementById('text_level').innerHTML = feature.properties.name;
+        document.getElementById('text').innerHTML = feature.properties.name;
+        document.getElementById('show_text').innerHTML = "เป็นระดับน้ำของคลอง: "+feature.properties.name+"มีระดับน้ำเท่ากับ: "+feature.properties.density+" สามารถกด Read more เพื่อดูรูปภาพระดับน้ำได้";
+    };
+```
+
 - Function getColor is the function to criteria-based color assignments
 
 ```javascript

@@ -48,6 +48,16 @@ geojson = L.geoJson(line, {
     style: style,
 }).addTo(mymap);
 ```
+```javascript
+//Example file Ling.js
+//line>features>properties>name or density
+//line>feature>geometry
+var line = {"type": "FeatureCollection", "features": 
+   [{ "type": "Feature", "geometry": { "type": "LineString", "coordinates": [[100.496321, 13.764396], [100.504045, 13.759311], [100.506191, 13.755559], [100.520525, 13.752141], [100.525932, 13.749056], [100.538464, 13.749807], [100.544987, 13.748556], [100.559406, 13.748389], [100.573997, 13.745555], [100.598373, 13.741386], [100.602465, 13.750724], [100.614824, 13.760895], [100.632849, 13.763729], [100.648985, 13.76573], [100.653791, 13.768731], [100.669584, 13.778234], [100.726061, 13.809076], [100.768633, 13.832579], [100.795069, 13.846247], [100.806227, 13.853081], [100.823221, 13.854747], [100.848112, 13.857581], [100.86339, 13.857414], [100.865965, 13.857081]] }, "properties": { "name": "คลองแสนแสบ", "density": 9 } },
+    { "type": "Feature", "geometry": { "type": "LineString", "coordinates": [[100.58137, 13.70219], [100.59288, 13.70786], [100.6073, 13.71587], [100.61513, 13.7127], [100.61788, 13.7117], [100.62509, 13.71537], [100.62921, 13.7137], [100.63436, 13.71403], [100.64432, 13.7157], [100.6735, 13.72337], [100.78886, 13.72437]] }, "properties": { "name": "คลองประเวศบุรีรมย์", "density": 5 } },
+    { "type": "Feature", "geometry": { "type": "LineString", "coordinates": [[100.892258, 13.849414], [101.049442, 13.729713], [101.052532, 13.719041], [101.059399, 13.714371], [101.067295, 13.701363], [101.073132, 13.691356]] }, "properties": { "name": "คลองนครเนืองเขต", "density": 4 } }]
+    }
+```
 - Style function will return where the return value contains fillcolor which is the fill color of the data feature properties density. It takes a value from the getColor function that returns a color value weight is the color is the color weight, opacity is the transparency of the line color is the command to add the color in datasets based on the density at the file line.js by use the function return name getColor.
 - Style(feature) function Retrieving the line.js value that contains a sequence of feature data and return the value
 onEachFeature: onEachFeature is the function that used for Layer GeoJso [Read more](https://leafletjs.com/examples/geojson/)

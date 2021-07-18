@@ -65,19 +65,21 @@ onEachFeature: onEachFeature is the function that used for Layer GeoJso [Read mo
 ```javascript
 function style(feature) {
     return {
-        fillColor: getColor(feature.properties.density),
+        fillColor: getColor(feature.properties.density), //fillcolor object line style
         weight: 5,
         opacity: 1,
-        color: getColor(feature.properties.density),
-        dashArray: '3',
+        color: getColor(feature.properties.density), // color object line style
+        dashArray: '3', 
         fillOpacity: 0.7,
     };
 }
 ```
 
 ```javascript
+//This makes the states highlight nicely on hover and gives us the ability to add other interactions inside our listeners.
 function onEachFeature(feature, layer) {
-    layer.on({
+//we’ll use the onEachFeature option to add the listeners on our state layers
+    layer.on({ 
         mouseover: highlightFeature,
         mouseout: resetHighlight,
         click: click
@@ -126,8 +128,14 @@ function click() {
     };
 ```
 
-- Function getColor is the function to criteria-based color assignments
+- Function getColor is the function to criteria-based color assignments 
+- Retrieve the value of the dataset in line.js
 
+```javascript
+var line = {"type": "FeatureCollection", "features": 
+   [{ "type": "Feature", "geometry": { "type": "LineString", "coordinates": [[100.496321, 13.764396], [100.504045, 13.759311], [100.506191, 13.755559], [100.520525, 13.752141], [100.525932, 13.749056], [100.538464, 13.749807], [100.544987, 13.748556], [100.559406, 13.748389], [100.573997, 13.745555], [100.598373, 13.741386], [100.602465, 13.750724], [100.614824, 13.760895], [100.632849, 13.763729], [100.648985, 13.76573], [100.653791, 13.768731], [100.669584, 13.778234], [100.726061, 13.809076], [100.768633, 13.832579], [100.795069, 13.846247], [100.806227, 13.853081], [100.823221, 13.854747], [100.848112, 13.857581], [100.86339, 13.857414], [100.865965, 13.857081]] }, "properties": { "name": "คลองแสนแสบ", "density": 9 } }]
+```
+- To access the value of density we ​​will use it in function style with the invocation of getcolor
 ```javascript
 function getColor(d) {
     return d > 10 ? '#800026' :
@@ -263,5 +271,118 @@ Refer to this [link](https://stackoverflow.com/questions/21064101/understanding-
    imgObject.src = "scale.jpg"; //This Address image 
         render(); // Run function render
 ```
+## HTML Function 
+  #### This section is an implementation that takes the use of Checkbox to pass the value of Value and then to Javascript. To check the value from Checkbox to define the Selector that we want to show by Code
+An example will be in the function func_chk(); To see the full of function func_chk() you can Donwload file index3.html
+  - This is for Check the CheckBox whether it has been pressed or noted or not  If there is noted, it will Check==true so which the CheckBox has been separated Id to chk1-4 Therefore, it is much the conditions for setting it up.
+*** Note: Since it's not possible to find a way to remove or solve a function call, If is required to check the CheckBox condition.
+  ```HTML
+   if ((document.all.chk1.checked == true) && (document.all.chk2.checked == true) && (document.all.chk3.checked == true) && (document.all.chk4.checked == true)) {
+                render();
+                innerLine(test1);
+                outLine();
+                colorGradient();
+                scaleLine();
+                window.addEventListener("resize", render);
+                window.addEventListener("resize", scaleLine);
+                window.addEventListener("resize", innerLine);
+                window.addEventListener("resize", outLine);
+                window.addEventListener("resize", level_water);
+            }
+
+<input type="checkbox" name="chk1" value="1" onclick="javascript:func_chk();" id="chk1"><label for="chk1">
+            innerLine &nbsp;
+        </label> //CheckBox that has already created
+  ```
+  
+- The part in the input The value of the water level.  We need to create Input and Button fields.
+- You can see that the Input has an ID to be used for calling.
+And the ID has to set for Button that is also assigned and the added the conditional protection that, when clicked, invokes the Function Level_water() and Clear_function() .
+At first we have to define ElementID.  Each of the things that we set before in case we use them in Javascript.
+  
+    ```HTML
+   <p>
+    <h4 style="color: aquamarine;">Input number</h4><input id="Number" type="number"> //Set Input only Number
+    </p>
+    <p>
+        <button id="run" onclick="level_water()">Enter</button>
+        <button id="run2" onclick="clear_function()">Clears</button>
+    </p>
+    ```
+  in JavaScript ElementID
+  
+   ```javascirpt
+  var run = document.getElementById("run")
+  ```
+  
+  - In part of Level_water() function 
+At first when we clicked in Button Enter will enter the function Level_water()
+Then the function will work, starting from fetching the value from the Input entered as a number to store it into the variable num =Number(first.value)
+Number is the variable we define by extracting ElementID Input to First.value Is to retrieve the value that we fill in and store it in num and then calculate from the equation that we created to make the line up.
+As the Code below
+  
+   ```javascirpt
+  var num2 = 0.3;
+                var num3 = 0.452;
+                var num4 = num3 - num2;
+                var sum = (0.3 * num) / 100;
+                var sum2 = num3 - sum;
+                y5 = document.documentElement.clientHeight * sum2;
+                func_chk();
+
+                //                             line of water level
+                context.canvas.width2 = document.documentElement.clientWidth * 0.315;
+                context.canvas.height2 = document.documentElement.clientHeight * 0.299;
+                context.canvas.width3 = document.documentElement.clientWidth * 0.25;
+                context.canvas.height3 = document.documentElement.clientHeight * 0.307;
+
+                context.restore();
+                context.beginPath();
+                context.strokeStyle = 'blue'
+                context.moveTo(context.canvas.width2, y5);
+                context.lineTo(context.canvas.width3, y5);
+                context.stroke();
+                context.closePath();
+  ```
+  - In this case, we'll use it as 0-100 %, so we have to define  if in the condition that our input is not more than and not less than 0-100
+So it will be like this
+  
+  ```javascirpt
+  if (num >= 0 && num <= 100) {
+                var num2 = 0.3;
+                var num3 = 0.452;
+                var num4 = num3 - num2;
+                var sum = (0.3 * num) / 100;
+                var sum2 = num3 - sum;
+                y5 = document.documentElement.clientHeight * sum2;
+                func_chk();
+
+                //                             line of water level
+                context.canvas.width2 = document.documentElement.clientWidth * 0.315;
+                context.canvas.height2 = document.documentElement.clientHeight * 0.299;
+                context.canvas.width3 = document.documentElement.clientWidth * 0.25;
+                context.canvas.height3 = document.documentElement.clientHeight * 0.307;
+
+                context.restore();
+                context.beginPath();
+                context.strokeStyle = 'blue'
+                context.moveTo(context.canvas.width2, y5);
+                context.lineTo(context.canvas.width3, y5);
+                context.stroke();
+                context.closePath();
+                lok_num = 0;
+            }
+            else {
+                alert("Please enter number 0-100% ");
+            }
+  ```
+- For Clear_function() function It is a call to the function of the display to be the same.  and set a value to clear the value entered from Input
+             
+```javascirpt
+  var clear_function =  function(){
+            first.value='';
+            func_chk();//function check checkbox is working?
+        }
+  ```                           
 ___
   Thx For read 

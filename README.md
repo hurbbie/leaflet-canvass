@@ -276,7 +276,7 @@ Refer to this [link](https://stackoverflow.com/questions/21064101/understanding-
 An example will be in the function func_chk(); To see the full of function func_chk() you can Donwload file index3.html
   - This is for Check the CheckBox whether it has been pressed or noted or not  If there is noted, it will Check==true so which the CheckBox has been separated Id to chk1-4 Therefore, it is much the conditions for setting it up.
 *** Note: Since it's not possible to find a way to remove or solve a function call, If is required to check the CheckBox condition.
-  ```HTML
+  ```javascript
    if ((document.all.chk1.checked == true) && (document.all.chk2.checked == true) && (document.all.chk3.checked == true) && (document.all.chk4.checked == true)) {
                 render();
                 innerLine(test1);
@@ -289,7 +289,9 @@ An example will be in the function func_chk(); To see the full of function func_
                 window.addEventListener("resize", outLine);
                 window.addEventListener("resize", level_water);
             }
-
+   ```
+  HTML create inpput and button
+```HTML
 <input type="checkbox" name="chk1" value="1" onclick="javascript:func_chk();" id="chk1"><label for="chk1">
             innerLine &nbsp;
         </label> //CheckBox that has already created
@@ -311,7 +313,7 @@ At first we have to define ElementID.  Each of the things that we set before in 
     ```
   in JavaScript ElementID
   
-   ```javascirpt
+   ```javascript
   var run = document.getElementById("run")
   ```
   
@@ -321,7 +323,7 @@ Then the function will work, starting from fetching the value from the Input ent
 Number is the variable we define by extracting ElementID Input to First.value Is to retrieve the value that we fill in and store it in num and then calculate from the equation that we created to make the line up.
 As the Code below
   
-   ```javascirpt
+   ```javascript
   var num2 = 0.3;
                 var num3 = 0.452;
                 var num4 = num3 - num2;
@@ -347,7 +349,7 @@ As the Code below
   - In this case, we'll use it as 0-100 %, so we have to define  if in the condition that our input is not more than and not less than 0-100
 So it will be like this
   
-  ```javascirpt
+  ```javascript
   if (num >= 0 && num <= 100) {
                 var num2 = 0.3;
                 var num3 = 0.452;
@@ -378,7 +380,7 @@ So it will be like this
   ```
 - For Clear_function() function It is a call to the function of the display to be the same.  and set a value to clear the value entered from Input
              
-```javascirpt
+```javascript
   var clear_function =  function(){
             first.value='';
             func_chk();//function check checkbox is working?

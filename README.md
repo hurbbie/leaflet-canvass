@@ -324,6 +324,7 @@ Number is the variable we define by extracting ElementID Input to First.value Is
 As the Code below
   
    ```javascript
+  var num = Number(first.value);
   var num2 = 0.3;
                 var num3 = 0.452;
                 var num4 = num3 - num2;
@@ -350,6 +351,7 @@ As the Code below
 So it will be like this
   
   ```javascript
+  var num = Number(first.value);
   if (num >= 0 && num <= 100) {
                 var num2 = 0.3;
                 var num3 = 0.452;
